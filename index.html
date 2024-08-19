@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Js Graphics Editing Service</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Global Styles */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #f2f2f2;
+            color: #333;
+            user-select: none;
+            -webkit-touch-callout: none;
+            -webkit-user-select:
+                -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+        }
+
+        html,
+        body {
+            overflow: hidden;
+            touch-action: none;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: #021C2D;
+            color: #fff;
+            padding: 1rem 0;
+            text-align: center;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        header .logo {
+            font-size: 1.8rem;
+            margin: 0;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        header nav ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        header nav ul li {
+            display: inline;
+            margin-right: 20px;
+        }
+
+        header nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            transition: color 0.3s ease;
+            padding: 0.5rem 1rem;
+        }
+
+        header nav ul li a:hover {
+            color: #00A6ED;
+        }
+
+        /* Hero Section Styles */
+        .hero {
+            background-color: #fff;
+            color: #333;
+            padding: 6rem 0;
+            text-align: center;
+        }
+
+        .hero h2 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .hero .btn {
+            background-color: #021C2D;
+            color: #fff;
+            padding: 0.75rem 1.5rem;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: background-color 0.3s ease;
+            cursor: pointer;
+            font-size: 1.2rem;
+        }
+
+        .hero .btn:hover {
+            background-color: #00A6ED;
+        }
+
+        /* Services Section Styles */
+        #services {
+            background-color: #f9f9f9;
+            padding: 4rem 0;
+            text-align: center;
+        }
+
+        #services h2 {
+            margin-bottom: 2rem;
+            font-size: 2.5rem;
+        }
+
+        .services-list {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .service-item {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            padding: 2rem;
+            margin: 1rem;
+            width: calc(33.33% - 2rem);
+            max-width: 300px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .service-item:hover {
+            transform: translateY(-5px);
+        }
+
+        /* Pricing Section Styles */
+        #pricing {
+            padding: 4rem 0;
+            text-align: center;
+        }
+
+        #pricing h2 {
+            margin-bottom: 2rem;
+            font-size: 2.5rem;
+        }
+
+        .pricing-list {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            text-align: left;
+            max-width: 600px;
+            margin: auto;
+        }
+
+        .pricing-list li {
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+            line-height: 1.6;
+        }
+
+        /* Contact Section Styles */
+        #contact {
+            background-color: #021C2D;
+            color: #fff;
+            padding: 4rem 0;
+            text-align: center;
+        }
+
+        #contact h2 {
+            margin-bottom: 2rem;
+            font-size: 2.5rem;
+        }
+
+        #contact p {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+        }
+
+        #contact form {
+            max-width: 600px;
+            margin: auto;
+            text-align: left;
+            padding: 0 2rem;
+        }
+
+        #contact form label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+        }
+
+        #contact form input[type="text"],
+        #contact form input[type="email"],
+        #contact form textarea {
+            width: 90%;
+            padding: 0.75rem;
+            margin-bottom: 1rem;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+
+        #contact form textarea {
+            height: 150px;
+        }
+
+        #contact form .btn {
+            background-color: #00A6ED;
+            color: #fff;
+            padding: 0.75rem 1.5rem;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: background-color 0.3s ease;
+            cursor: pointer;
+            font-size: 1.2rem;
+        }
+
+        #contact form .btn:hover {
+            background-color: #021C2D;
+        }
+
+        /* Footer Styles */
+        footer {
+            background-color: #021C2D;
+            color: #fff;
+            text-align: center;
+            padding: 1rem 0;
+        }
+
+        footer p {
+            margin: 0;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .services-list .service-item {
+                width: calc(50% - 2rem);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .services-list .service-item {
+                width: calc(100% - 2rem);
+            }
+
+            #contact form {
+                padding: 0 1rem;
+            }
+        }
+
+        .logo img {
+            max-width: 200px;
+            /* Adjust max-width as needed */
+            height: auto;
+        }
+    </style>
+</head>
+
+<body oncontextmenu="return false">
+    <header>
+        <h1 class="logo"><img src="logo.png" alt="Js Graphics Logo"></h1>
+        <nav>
+            <ul>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#pricing">Pricing</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="hero" class="hero">
+        <div class="hero-content">
+            <p>.</p>
+            <p>.</p>
+            <h2>Js Graphics</h2>
+            <p>Your destination for creative graphic design.</p>
+            <a href="#services" class="btn">Discover Our Services</a>
+
+            <div class="facebook-post-container">
+                <div id="fb-root"></div>
+                <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v10.0" nonce="XXXXXXXXXX"></script>
+                <div class="fb-post" data-href="https://www.facebook.com/61561923260186/posts/pfbid0y9pR9VZywco53ksP3dtQ3kxbpgCp1ZnXenuqR7X9uJnisD8NHAwZiAn6AyHhFnnal/?app=fbl" data-width="500"></div>
+            </div>
+        </div>
+    </section>
+
+    <style>
+        .facebook-post-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 20px;
+            /* Adjust as needed */
+        }
+
+        .fb-post {
+            width: 100%;
+            /* Adjust width as needed */
+        }
+    </style>
+
+
+    <section id="services">
+        <h2>Services Offered by Js Graphics</h2>
+        <ul class="services-list">
+            <li class="service-item">Logo Design</li>
+            <li class="service-item">Poster Design</li>
+            <li class="service-item">Banner Design</li>
+            <li class="service-item">Tarpaulin Design</li>
+            <li class="service-item">Signage Design</li>
+            <li class="service-item">Business Card Design</li>
+            <li class="service-item">Greeting Card Design</li>
+            <li class="service-item">T-Shirt Design</li>
+            <li class="service-item">Social Media Branding
+                <ul>
+                    <li>Facebook Cover Art</li>
+                    <li>Twitter Header</li>
+                    <li>YouTube Channel Banner</li>
+                    <li>YouTube Thumbnail</li>
+                </ul>
+            </li>
+            <li class="service-item">Formal Attire for Resume, etc.</li>
+            <li class="service-item">Prenup Wed</li>
+            <li class="service-item">Kindergarten</li>
+            <li class="service-item">Elementary</li>
+            <li class="service-item">High School</li>
+            <li class="service-item">Senior High School</li>
+            <li class="service-item">College</li>
+            <li class="service-item">Face Swap</li>
+        </ul>
+    </section>
+
+
+    <section id="pricing">
+        <h2>Pricing</h2>
+        <ul class="pricing-list">
+            <li>Logo Design: PHP 300-500 (service charge may vary)</li>
+            <li>Advertisement Video (for commercial use): PHP 1000 per minute</li>
+            <li>Social Media Package: PHP 2500</li>
+            <li>Poster Design: PHP 300-500 (service charge may vary)</li>
+            <li>Vlog Edit: PHP 2000 every 10 minutes</li>
+        </ul>
+    </section>
+
+    <section id="contact">
+        <h2>Contact Us</h2>
+        <p>For inquiries, call: +639947197500</p>
+        <p>Address: 11 MH DEL PILAR SAN JUAN CITY METRO MANILA</p>
+        <div id="map">
+            <!-- Embed Google Maps iframe -->
+            <iframe width="100%" height="400" frameborder="0" style="border:0" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3861.993961709733!2d121.03521181424836!3d14.605197980081565!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3397ca8fdd9509a7%3A0x5986c578bd1a37a4!2s11%20MH%20del%20Pilar%2C%20San%20Juan%2C%20Metro%20Manila!5e0!3m2!1sen!2sph!4v1625830094947!5m2!1sen!2sph" allowfullscreen>
+            </iframe>
+        </div>
+        <div id="contact-container" class="contact-form">
+            <form id="my-form" action="https://formspree.io/f/xyzgjzej" method="POST">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required />
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required />
+                <label for="message">Message:</label>
+                <textarea id="message" name="message" rows="5" required></textarea>
+                <button id="my-form-button" style="border-radius: 15px;          background-color: #00A6ED;
+            color: #fff;
+            padding: 0.75rem 1.5rem;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: background-color 0.3s ease;
+            cursor: pointer; font-size: 1.2rem;">Submit</button>
+                <p id="my-form-status"></p>
+            </form>
+        </div>
+    </section>
+    <footer>
+        <p>&copy; 2024 Js Graphics. All rights reserved.</p>
+    </footer>
+<!-- Smartsupp Live Chat script -->
+<script type="text/javascript">
+var _smartsupp = _smartsupp || {};
+_smartsupp.key = '6f77c150da619d052fd268f90763a5535373e120';
+window.smartsupp||(function(d) {
+  var s,c,o=smartsupp=function(){ o._.push(arguments)};o._=[];
+  s=d.getElementsByTagName('script')[0];c=d.createElement('script');
+  c.type='text/javascript';c.charset='utf-8';c.async=true;
+  c.src='https://www.smartsuppchat.com/loader.js?';s.parentNode.insertBefore(c,s);
+})(document);
+</script>
+<noscript> Chat with <a href=“https://bit.ly/JS-GRAPHICS” target=“_blank”>JS GRAPHICS</a></noscript>
+</body>
+
+</html>
